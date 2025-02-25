@@ -1,0 +1,153 @@
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+
+    public class TCP {
+        public static void main(String[] args) throws InterruptedException {
+            WebDriver driver = new ChromeDriver();
+
+            driver.get("http://192.168.103.57:8069/web/login");
+
+            driver.findElement(By.id("login")).sendKeys("vignesh.k@balbhas.com");
+            driver.findElement(By.id("password")).sendKeys("$Admin@12345");
+            WebElement button =driver.findElement(By.xpath("//button[normalize-space()='Log in']"));
+            button.click();
+            System.out.println("Test case 1:Login Sucessfully");
+
+            driver.manage().window().maximize();
+// Navigate to TCM
+// Create a new test case
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            WebElement Testingbutton = driver.findElement(By.linkText("Testing"));
+            Testingbutton.click();
+            System.out.println("Test case 2: Pass");
+
+//       WebElement parentid = driver.findElement(By.id("o-dropdown dropdown o-dropdown--no-caret show"));
+//
+//       WebElement childElement = parentid.findElement(By.className("dropdown-toggle"));
+//       childElement.click();
+
+
+            WebElement Testcases = driver.findElement(By.xpath("//span[normalize-space()='Test cases']"));
+            Testcases.click();
+
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            WebElement Mastertestcase =driver.findElement(By.xpath("//*[normalize-space()='Testcase Planning']"));
+            Mastertestcase.click();
+            System.out.println("Test case 3: Pass");
+
+            WebElement Testplanning = driver.findElement(By.xpath("//button[normalize-space()='New']"));
+            Testplanning.click();
+
+            WebElement Patchnumber = driver.findElement(By.xpath("//input[@id='patch_number']"));
+            Patchnumber.sendKeys("001");
+
+            WebElement Projectname = driver.findElement(By.xpath("//input[@id='project_id']"));
+            Projectname.click();
+
+            WebElement dropdown = driver.findElement(By.xpath("//*[@id='project_id_0_1']"));
+            dropdown.click();
+
+            WebElement Productclick = driver.findElement(By.xpath("//div[@name='product_ids']//div[@class='o-autocomplete dropdown']"));
+            Productclick.click();
+
+            WebElement Productname = driver.findElement(By.xpath("//*[@id='product_ids_0_5']"));
+            Productname.click();
+
+            WebElement Moduleclick = driver.findElement(By.xpath("//input[@id='feature_ids']"));
+            Moduleclick.click();
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+            WebElement Searchmore = driver.findElement(By.partialLinkText("Search More..."));
+            Searchmore.click();
+            WebElement module = driver.findElement(By.xpath("//*[normalize-space()='Time Sheet Mgmt']"));
+            module.click();
+
+
+            // WebElement search = driver.findElement(By.className("o_searchview_input"));
+//        search.sendKeys("Time");
+//        search.sendKeys(Keys.ENTER);
+
+
+            // Locate the "Upload Files" button and click it to open the file dialog (if needed)
+//        WebElement AddfileButton = driver.findElement(By.xpath("//button[normalize-space()='Upload Files']"));
+//        AddfileButton.click();
+
+// Assuming there's an <input> element for file upload that becomes available after clicking the button
+            WebElement fileInput = driver.findElement(By.xpath("//input[@type='file']"));
+
+// File path - ensure it's correctly formatted and points to the correct location
+            String filePath = "\"C:\\Users\\KarthikKrishnanS\\OneDrive - RK INDUSTRIES\\Microsoft Teams Chat Files\\Time sheet OODO.xlsx\"";
+           // driver.findElement(By.id("file-upload")).sendKeys(filePath);
+
+
+// Send the file path to the file input element
+           fileInput.sendKeys(filePath);
+
+            WebElement testingtype = driver.findElement(By.id("test_case_type_id"));
+            testingtype.click();
+
+            WebElement dropdowntype = driver.findElement(By.id("test_case_type_id_0_0"));
+            dropdowntype.click();
+
+            WebElement save = driver.findElement(By.className("save_button"));
+            save.click();
+
+            Thread.sleep(10000);
+
+            WebElement checkbox = driver.findElement(By.xpath("//input[@type='checkbox']"));
+            checkbox.click();
+
+            WebDriverWait waitallocate = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement secondButton = waitallocate.until(elementToBeClickable(
+                    By.xpath("(//button[contains(@class, 'btn btn-primary')])[2]")
+            ));
+            secondButton.click();
+
+            Alert alert = driver.switchTo().alert();
+            //System.out.println("Alert Message: " + alert.getText());
+            alert.accept();
+
+            WebElement allocatedTo = driver.findElement(By.id("allocated_to"));
+            allocatedTo.sendKeys("345");
+            allocatedTo.sendKeys(Keys.ENTER);
+
+            Thread.sleep(10000);
+
+            // WebDriverWait waitbutton = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebDriverWait waits = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement element = waits.until(elementToBeClickable(By.name("allocate_task")));
+            element.click();
+
+            WebElement ok = driver.findElement(By.name("action_save"));
+            ok.click();
+
+            WebElement inProgress = driver.findElement(By.xpath("//span[normalize-space()='In Progress']"));
+            inProgress.click();
+
+
+            //Addfile.click();
+
+
+
+
+
+
+
+
+
+        }
+    }
+
+
+
+
+
