@@ -1,0 +1,122 @@
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.sql.Driver;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+
+public class TCM {
+    public static void main(String[] args) throws InterruptedException {
+        // System.out.println("Test");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://192.168.103.57:8069/web/login");
+
+        driver.findElement(By.id("login")).sendKeys("vignesh.k@balbhas.com");
+        driver.findElement(By.id("password")).sendKeys("$Admin@12345");
+        WebElement button =driver.findElement(By.xpath("//button[normalize-space()='Log in']"));
+        button.click();
+        System.out.println("Test case 1:Login Sucessfully");
+
+        driver.manage().window().maximize();
+// Navigate to TCM
+// Create a new test case
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        WebElement Testingbutton = driver.findElement(By.linkText("Testing"));
+        Testingbutton.click();
+        System.out.println("Test case 2: Pass");
+
+//       WebElement parentid = driver.findElement(By.id("o-dropdown dropdown o-dropdown--no-caret show"));
+//
+//       WebElement childElement = parentid.findElement(By.className("dropdown-toggle"));
+//       childElement.click();
+
+
+        WebElement Testcases = driver.findElement(By.xpath("//span[normalize-space()='Test cases']"));
+        Testcases.click();
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        WebElement Mastertestcase =driver.findElement(By.linkText("Master Testcases"));
+        Mastertestcase.click();
+        System.out.println("Test case 3: Pass");
+
+        WebElement Newtestcase = driver.findElement(By.xpath("//button[normalize-space()='New']"));
+        Newtestcase.click();
+        System.out.println("Test case 4: Pass");
+        WebElement Projectname = driver.findElement(By.xpath("//input[@id='project_id']"));
+        Projectname.click();
+        System.out.println("Test case 5: Pass");
+
+        WebElement Dropdown = driver.findElement(By.xpath("//*[@id='project_id_0_1']"));
+        Dropdown.click();
+        System.out.println("Test case 6: Pass");
+
+        WebElement Productname = driver.findElement(By.xpath("//input[@id='product_id']"));
+        Productname.click();
+        System.out.println("Test case 7: Pass");
+
+        WebElement Productdropdown = driver.findElement(By.xpath("//*[@id='product_id_0_0']"));
+        Productdropdown.click();
+        System.out.println("Test case 8: Pass");
+
+        WebElement Modulename = driver.findElement(By.xpath("//input[@id='feature_id']"));
+        Modulename.click();
+        System.out.println("Test case 9: Pass");
+
+        WebElement Moduledropdown = driver.findElement(By.xpath("//*[@id='feature_id_0_0']"));
+        Moduledropdown.click();
+        System.out.println("Test case 10: Pass");
+
+        WebElement Testingtype = driver.findElement(By.xpath("//input[@id='test_case_type_id']"));
+        Testingtype.click();
+        System.out.println("Test case 11: Pass");
+
+        WebElement Testingdropdown = driver.findElement(By.xpath("//*[@id='test_case_type_id_0_0']"));
+        Testingdropdown.click();
+        System.out.println("Test case 12: Pass");
+
+        WebElement Descriptiontextbox= driver.findElement(By.xpath("//textarea[@id='description']"));
+        Descriptiontextbox.sendKeys("Tested by Automation");
+        System.out.println("Test case 13: Pass");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy( 4, 4000);");
+
+        WebElement Addfile= driver.findElement(By.linkText("Add a line"));
+        Addfile.click();
+        System.out.println("Test case 14: Pass");
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.findElements(By.xpath("//span[normalize-space()='Upload your file']"));
+        WebElement fileInput = driver.findElement(By.xpath("(//input[@type='file' and contains(@class, 'o_input_file')])[3]"));
+        // Provide the file path
+        String filePath = "C:\\Users\\KarthikKrishnanS\\OneDrive - RK INDUSTRIES\\ODOO-Attendance.xlsx";
+
+        // Send the file path to the input field
+        fileInput.sendKeys(filePath);
+        System.out.println("Test case 15: Pass");
+
+        Thread.sleep(2000);
+        WebElement Savebutton = driver.findElement(By.xpath("//span[@class='save_button']"));
+        Savebutton.click();
+        System.out.println("Test case 16: Pass");
+
+       // WebElement submitbutton = driver.findElement(By.xpath("//span[normalize-space()='Submit']"));
+        //submitbutton.click();
+        //System.out.println("Test case 17: Pass");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+
+      //  WebElement ok = driver.findElement(By.xpath("//span[normalize-space()='Ok']"));
+        //ok.click();
+        System.out.println("Test case 18: Pass");
+
+        System.out.println("Sucessfully runed");
+    }
+
+}
